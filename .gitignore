@@ -8,3 +8,4 @@
 # .tfvars files
 # *.tfvars
 ./env/secrets.tfvars
+env/secrets.tfvars

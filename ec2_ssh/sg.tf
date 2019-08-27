@@ -1,11 +1,11 @@
 // Security Group Resource for Instances
 resource "aws_security_group" "main" {
-  name        = "${terraform.workspace}-${var.name}-sg"
+  name        = "${local.name}-sg"
   description = "Webapp SG"
   vpc_id      = var.vpc_id
 
   tags = {
-    "Name" = "${terraform.workspace}-${var.name}-sg"
+    "Name" = "${local.name}-sg"
     "Env"  = "${terraform.workspace}"
   }
 }

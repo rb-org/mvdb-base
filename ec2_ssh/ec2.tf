@@ -5,7 +5,7 @@ resource "aws_eip" "main" {
   vpc      = true
 
   tags = {
-    "Name" = "${terraform.workspace}-${var.name}-${count.index}"
+    "Name" = "${local.name}-${count.index}"
     "Env"  = "${terraform.workspace}"
   }
 }
@@ -18,7 +18,7 @@ resource "aws_instance" "main" {
   subnet_id              = "${element(var.public_subnets, count.index)}"
   iam_instance_profile   = "${aws_iam_instance_profile.instance_role_instance_profile.name}"
   vpc_security_group_ids = ["${aws_security_group.main.id}"]
-  key_name               = "${var.key_pair[data.aws_region.current]}"
+  key_name               = "${var.key_pair[data.aws_region.current.name]}"
 
   availability_zone = "${element(data.aws_availability_zones.available.names, count.index)}"
   # user_data         = "${element(data.template_file.ec2_userdata.*.rendered, count.index)}"
@@ -29,7 +29,7 @@ resource "aws_instance" "main" {
   }
 
   tags = {
-    "Name" = "${terraform.workspace}-${var.name}-${count.index}"
+    "Name" = "${local.name}-${count.index}"
     "Env"  = "${terraform.workspace}"
   }
 }

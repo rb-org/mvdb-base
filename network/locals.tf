@@ -1,4 +1,5 @@
 locals {
+  name = "${var.name_prefix}-${terraform.workspace}"
   private_subnets = slice([
     cidrsubnet(var.vpc_cidr, 8, 51),
     cidrsubnet(var.vpc_cidr, 8, 52),

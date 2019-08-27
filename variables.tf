@@ -1,5 +1,5 @@
 variable "name_prefix" {
-  default = "mdb"
+  default = "mvdb"
 }
 
 variable "region" {
@@ -9,13 +9,12 @@ variable "region" {
 variable "default_tags" {
   type = "map"
   default = {
-    Github-Repo = "rb-org/mdb-tfm-base"
+    Github-Repo = "rb-org/mvdb-tfm-base"
     Terraform   = "true"
   }
 }
 # Account IDs
 variable "account_id" {
-  default = "827734529707"
 }
 
 # Remote State S3 Bucket

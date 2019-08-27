@@ -11,6 +11,7 @@ module "network" {
 module "ec2_ssh" {
   source = "./ec2_ssh"
 
+  name_prefix    = var.name_prefix
   vpc_id         = module.network.vpc_id
   public_subnets = module.network.public_subnets
   allowed_ips    = var.allowed_ips

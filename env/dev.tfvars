@@ -8,5 +8,5 @@ instance_count = {
 }
 
 key_pair = {
-  eu-west-1 = "mdb-dev-euw-1"
+  eu-west-1 = "mvdb-dev-euw-1"
 }

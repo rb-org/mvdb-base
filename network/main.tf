@@ -19,8 +19,11 @@ module "vpc" {
   dhcp_options_domain_name         = ""
 
   # Endpoints
-  enable_apigw_endpoint    = true
-  enable_dynamodb_endpoint = true
+  enable_apigw_endpoint             = true
+  enable_dynamodb_endpoint          = true
+  apigw_endpoint_security_group_ids = [aws_security_group.apigw_endpoint.id]
+
+
 
   # Gateways
   enable_nat_gateway     = var.enable_nat_gateway
@@ -31,7 +34,6 @@ module "vpc" {
 
   # Tags & Prefixes
   tags = "${merge(var.default_tags,
-    map("Name", "${var.name_prefix}-vpc"),
     map("Environment", "${lower(terraform.workspace)}"),
     )
   }"

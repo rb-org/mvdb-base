@@ -11,13 +11,13 @@ data "aws_iam_policy_document" "instance_assume_role_policy" {
 }
 
 resource "aws_iam_role" "instance_role" {
-  name               = "${var.name}-ec2-role"
+  name               = "${local.name}-ec2-role"
   path               = "/"
   assume_role_policy = "${data.aws_iam_policy_document.instance_assume_role_policy.json}"
 }
 
 resource "aws_iam_instance_profile" "instance_role_instance_profile" {
-  name = "${var.name}-ec2-profile"
+  name = "${local.name}-ec2-profile"
   role = "${aws_iam_role.instance_role.name}"
 }
 

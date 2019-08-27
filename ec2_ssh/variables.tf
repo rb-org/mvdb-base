@@ -51,3 +51,6 @@ variable "vpc_id" {}
 variable "key_pair" {
   type = "map"
 }
+variable "name_prefix" {
+
+}
