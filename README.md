@@ -1,2 +1,1 @@
-# mvdb-base
-Movie DB Base
+# Movie DB - Base

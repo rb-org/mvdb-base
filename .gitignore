@@ -6,4 +6,5 @@
 *.tfstate.*
 
 # .tfvars files
-*.tfvars
+# *.tfvars
+./env/secrets.tfvars
