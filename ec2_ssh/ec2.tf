@@ -4,10 +4,12 @@ resource "aws_eip" "main" {
   instance = "${element(aws_instance.main.*.id, count.index)}"
   vpc      = true
 
-  tags = {
-    "Name" = "${local.name}-${count.index}"
-    "Env"  = "${terraform.workspace}"
-  }
+
+  tags = "${merge(var.default_tags,
+    map("Name", "${local.prefix}-nat-gw"),
+    map("Environment", "${lower(terraform.workspace)}"),
+    )
+  }"
 }
 
 // EC2 instance
@@ -27,9 +29,9 @@ resource "aws_instance" "main" {
     create_before_destroy = true
     ignore_changes        = ["user_data", "ami"]
   }
-
-  tags = {
-    "Name" = "${local.name}-${count.index}"
-    "Env"  = "${terraform.workspace}"
-  }
+  tags = "${merge(var.default_tags,
+    map("Name", "${local.name}-${count.index}"),
+    map("Environment", "${lower(terraform.workspace)}"),
+    )
+  }"
 }

@@ -4,10 +4,11 @@ resource "aws_security_group" "main" {
   description = "Webapp SG"
   vpc_id      = var.vpc_id
 
-  tags = {
-    "Name" = "${local.name}-sg"
-    "Env"  = "${terraform.workspace}"
-  }
+  tags = "${merge(var.default_tags,
+    map("Name", "${local.prefix}-sg"),
+    map("Environment", "${lower(terraform.workspace)}"),
+    )
+  }"
 }
 
 // Ingress rule for Tomcat

@@ -54,3 +54,7 @@ variable "key_pair" {
 variable "name_prefix" {
 
 }
+
+variable "default_tags" {
+  default = "map"
+}
