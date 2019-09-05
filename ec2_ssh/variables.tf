@@ -2,7 +2,7 @@ variable "managed_policy_arns" {
   type = "list"
   default = [
     "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",
-    "arn:aws:iam::aws:policy/AdministratorAccess",
+    "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy",
   ]
   description = "Managed Policy Arns"
 }
