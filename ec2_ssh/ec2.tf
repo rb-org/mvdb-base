@@ -8,6 +8,7 @@ resource "aws_eip" "main" {
   tags = "${merge(var.default_tags,
     map("Name", "${local.prefix}-nat-gw"),
     map("Environment", "${lower(terraform.workspace)}"),
+    map("AutoStop", "true"),
     )
   }"
 }
