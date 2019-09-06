@@ -2,7 +2,11 @@ variable "managed_policy_arns" {
   type = "list"
   default = [
     "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",
-    "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy",
+    "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
+    "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess",
+    "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
+    "arn:aws:iam::aws:policy/AmazonSSMFullAccess",
+
   ]
   description = "Managed Policy Arns"
 }
@@ -15,14 +19,14 @@ variable "os" {
 variable "instance_type" {
   type = "map"
   default = {
-    dev = "t3.medium"
+    dev = "t3.small"
     tst = "t3.medium"
     prd = "t3.medium"
   }
 }
 
 variable "user_data" {
-  default = "files/userdata_amz.sh"
+  default = "userdata_amz.sh"
 }
 
 variable "allowed_ips" {
@@ -57,4 +61,8 @@ variable "name_prefix" {
 
 variable "default_tags" {
   default = "map"
+}
+
+variable "log_group_retention" {
+  default = 3
 }

@@ -18,4 +18,5 @@ module "ec2_ssh" {
   instance_count = var.instance_count["ssh"]
   key_pair       = var.key_pair
   default_tags   = var.default_tags
+  os             = data.aws_ami.ubuntu_1804.image_id
 }

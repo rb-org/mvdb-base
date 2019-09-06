@@ -6,7 +6,7 @@ resource "aws_security_group" "main" {
 
   tags = "${merge(var.default_tags,
     map("Name", "${local.prefix}-sg"),
-    map("Environment", "${lower(terraform.workspace)}"),
+    map("Workspace", "${lower(terraform.workspace)}"),
     )
   }"
 }

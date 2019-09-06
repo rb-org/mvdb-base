@@ -41,3 +41,11 @@ variable "instance_count" {
 variable "key_pair" {
   type = "map"
 }
+
+variable "os" {
+  type = "map"
+  default = {
+    ssh = "ubuntu_1804"
+  }
+}
+

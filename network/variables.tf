@@ -2,7 +2,7 @@ variable "name_prefix" {}
 variable "vpc_cidr" {}
 
 variable "enable_nat_gateway" {
-  default = true
+  default = false
 }
 variable "enable_vpn_gateway" {
   default = false
