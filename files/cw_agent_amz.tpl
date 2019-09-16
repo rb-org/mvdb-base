@@ -29,12 +29,6 @@
             "timestamp_format":"%H:%M:%S %y %b %-d"
           },
           {
-            "file_path": "/var/log/syslog",
-            "log_group_name": "/${prefix}/${instance_name}",
-            "log_stream_name": "{instance_id}/syslog",
-            "timezone": "UTC"
-          },
-          {
             "file_path": "/var/log/cloud-init-output.log",
             "log_group_name": "/${prefix}/${instance_name}",
             "log_stream_name": "{instance_id}/cfn",

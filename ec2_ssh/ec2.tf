@@ -8,7 +8,7 @@ resource "aws_eip" "main" {
   tags = "${merge(var.default_tags,
     map("Name", "${local.name}-${count.index}"),
     map("Workspace", "${lower(terraform.workspace)}"),
-    map("AutoStop", "true"),
+
     )
   }"
 }
@@ -33,6 +33,8 @@ resource "aws_instance" "main" {
   tags = "${merge(var.default_tags,
     map("Name", "${local.name}-${count.index}"),
     map("Workspace", "${lower(terraform.workspace)}"),
+    map("AutoStop", "true"),
+    map("Inspector", "true"),
     )
   }"
 }

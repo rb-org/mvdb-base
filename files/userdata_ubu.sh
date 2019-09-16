@@ -1,7 +1,5 @@
 
 #!/bin/bash
-
-
 # Variables 
 
 LOCAL_IPV4=`curl curl http://169.254.169.254/latest/meta-data/local-ipv4 2> /dev/null`
@@ -24,6 +22,8 @@ sudo pip install awscli
 instance_id=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
 wkspc=$(aws ec2 describe-instances --instance-ids $instance_id --region eu-west-1 --query 'Reservations[*].Instances[*].[Tags[?Key==`Workspace`].Value]' --output text)
 name=$(aws ec2 describe-instances --instance-ids $instance_id --region eu-west-1 --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`].Value]' --output text)
+inspector=$(aws ec2 describe-instances --instance-ids $instance_id --region eu-west-1 --query 'Reservations[*].Instances[*].[Tags[?Key==`Inspector`].Value]' --output text)
+
 short_name=$(echo $name| head -c -3)
 
 # Install SSM Agent
@@ -46,6 +46,15 @@ install_cw_agent(){
     sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:/$wkspc/cw_agent/$short_name -s
 }
 
+install_inspector_agent(){
+  cd /tmp
+  wget https://inspector-agent.amazonaws.com/linux/latest/install
+  sudo bash install
+}
 
 install_ssm_agent
 install_cw_agent
+
+if [ $inspector = "true" ]; then
+  install_inspector_agent
+fi

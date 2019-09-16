@@ -11,6 +11,7 @@ variable "default_tags" {
   default = {
     Github-Repo = "rb-org/mvdb-tfm-base"
     Terraform   = "true"
+    Creator     = "rupert"
   }
 }
 # Account IDs
@@ -21,6 +22,7 @@ variable "account_id" {
 variable "remote_state_s3_auto" {
   description = "S3 bucket name holding the Terraform remote state file"
   default     = "tfm-remote-state"
+
 }
 
 # VPC
